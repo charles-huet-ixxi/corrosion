@@ -689,6 +689,9 @@ function(_add_cargo_build out_cargo_build_out_dir)
     if(CMAKE_AR AND NOT (Rust_CARGO_TARGET_ENV STREQUAL "msvc"))
         list(APPEND corrosion_cc_rs_flags "AR_${_CORROSION_RUST_CARGO_TARGET_UNDERSCORE}=${CMAKE_AR}")
     endif()
+    if(CMAKE_RANLIB AND NOT (Rust_CARGO_TARGET_ENV STREQUAL "msvc"))
+        list(APPEND corrosion_cc_rs_flags "RANLIB_${_CORROSION_RUST_CARGO_TARGET_UNDERSCORE}=${CMAKE_RANLIB}")
+    endif()
 
     # Since we instruct cc-rs to use the compiler found by CMake, it is likely one that requires also
     # specifying the target sysroot to use. CMake's generator makes sure to pass --sysroot with
